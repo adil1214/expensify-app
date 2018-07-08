@@ -28,6 +28,7 @@ module.exports = {
         contentBase: path.join(__dirname, 'public'),
         port: 1234,
         open: true,
-        openPage: ''    // <= webpack dev server bug workaround
+        openPage: '',    // <= webpack dev server bug workaround
+        historyApiFallback: true
     }
 };
