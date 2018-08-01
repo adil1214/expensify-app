@@ -1,7 +1,7 @@
 import { createStore } from 'redux';
 
 // Action generators: functions that generate/return action objects
-
+//#region action generators declarations
 // incrementCount action generator
 const incrementCount = ({ incrementBy = 1 } = {}) => ({
   type: 'INCREMENT',
@@ -24,12 +24,12 @@ const setCount = ({ count }) => ({
 const resetCount = () => ({
   type: 'RESET',
 });
+//#endregion
 
-//
-// store creation it takes a callback function that takes 2 parameters and gets called 
-// whenever .dispatch is called on the store
-//
-const store = createStore((state = { count: 0 }, action) => {
+// Reducers ======================
+// 1.reducers are pure functions
+// 2.never change state or action
+const countReducer = (state = { count: 0 }, action) => {
   switch (action.type) {
     case 'INCREMENT':
       return {
@@ -54,7 +54,15 @@ const store = createStore((state = { count: 0 }, action) => {
     default:
       return state;
   }
-});
+};
+
+
+//
+// store creation it takes a callback function (called the reducer) 
+// that takes 2 parameters and gets called whenever dispatch() 
+// is called on the store.
+//
+const store = createStore(countReducer);
 
 // 
 // function that defines the actions to do whenever the store is changed,
