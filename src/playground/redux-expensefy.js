@@ -3,13 +3,13 @@ import uuidv1 from 'uuid/v1';
 
 // ADD_EXPENSE
 const addExpense = (
-    { 
-      description = '', 
-      note = '', 
-      amount = 0,
-      createdAt = 0
-    } = {}
-  ) => ({
+  { 
+    description = '', 
+    note = '', 
+    amount = 0,
+    createdAt = 0
+  } = {}
+) => ({
   type: 'ADD_EXPENSE',
   expense: {
     id: uuidv1(),
@@ -143,6 +143,21 @@ const filtersReducer = (state = filterReducerDefaultState, action) => {
   }
 };
 
+// getVisibleExpenses
+const getVisibleExpenses = (expenses, { text, sortBy, startDate, endDate}) => {   // TODO:
+   return expenses.filter((expense) => {
+    let startDateMatch = typeof startDate !== 'number' || startDate <=  expense.createdAt;
+    let endDateMatch = typeof startDate !== 'number' || endDate >= expense.createdAt;
+    let textMatch;// = (text == expense.description);
+
+    textMatch = expense.description.toLowerCase().includes(text.toLowerCase());
+     
+    return startDateMatch && endDateMatch && textMatch;
+   });
+
+  // return expenses;
+};
+
 const store = createStore(
   combineReducers({
     expenses: expensesReducer,
@@ -151,12 +166,15 @@ const store = createStore(
 );
 
 const unsubscribe = store.subscribe(() => {
-  // console.log(store.getState().expenses);
-  console.log(store.getState());
-})
+  const state = store.getState();
+  const visibleExpenses = getVisibleExpenses(state.expenses, state.filters);
+  console.log(visibleExpenses);
+});
 
-// const expenseOne = store.dispatch(addExpense({ description: 'rent', amount: 60000 }));
-// const expenseTwo = store.dispatch(addExpense({ description: 'coffee', amount: 200 }));
+const expenseOne = store.dispatch(addExpense({ description: 'march rent', amount: 60000, createdAt: 1000 }));
+store.dispatch(addExpense({ description: 'april Rent', amount: 60000, createdAt: 50000 }));
+const expenseTwo = store.dispatch(addExpense({ description: 'coffee', amount: 200, createdAt: -2500 }));
+store.dispatch(setTextFilter('rent'));
 
 // store.dispatch(removeExpense({ id: expenseOne.expense.id }));
 
@@ -168,6 +186,6 @@ const unsubscribe = store.subscribe(() => {
 // store.dispatch(sortByAmount());
 // store.dispatch(sortByDate());
 
-store.dispatch(setStartDate(123));
-store.dispatch(setEndDate(456));
-store.dispatch(setStartDate());
+// store.dispatch(setStartDate(123));
+// store.dispatch(setEndDate(456));
+// store.dispatch(setStartDate());
