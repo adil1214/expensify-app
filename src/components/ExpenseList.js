@@ -1,25 +1,26 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import ExpenseListItem from './ExpenseListItem';
+import getVisibleExpenses from './../selectors/expenses';
 
 
 const ExpenseList = (props) => (
   <div>
     <h1>Expense List</h1>
-    filter text : {props.filters.text}
-    {props.expenses.map((a, b) => {
+    {/* {props.expenses.map((a, b) => {
       return <p key={b}>{a.description}  :  {a.amount}</p>;
-    } )}
+    } )} */}
+    {props.expenses.map((a, b) => {
+      return <ExpenseListItem {...a} key={b}/> 
+    })}
   </div>
 );
 
 const mapStateToProps = (state) => {
   return {
-    expenses: state.expenses,
-    filters: state.filters
+    expenses: getVisibleExpenses(state.expenses, state.filters)
   };
 };
 
 // the call to connect returns the higher order component (a function)
 export default connect(mapStateToProps)(ExpenseList);
-
-// export default ConnectedExpenseList;
