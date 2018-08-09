@@ -25,9 +25,9 @@ store1.dispatch(addExpense({description: '4th week\'s food', amount: 350}));
 
 store1.dispatch(setTextFilter('bill'));
 
-setTimeout(() => {
-  store1.dispatch(setTextFilter('water'));
-}, 4000);
+// setTimeout(() => {
+//   store1.dispatch(setTextFilter('water'));
+// }, 4000);
 
 
 const jsx = (
