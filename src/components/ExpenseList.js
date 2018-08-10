@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ExpenseListItem from './ExpenseListItem';
 import getVisibleExpenses from './../selectors/expenses';
-import { addExpense, editExpense, removeExpense } from './../actions/expenses';
 
 
 const ExpenseList = (props) => (

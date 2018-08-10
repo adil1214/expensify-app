@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addExpense, editExpense, removeExpense } from './../actions/expenses';
+import { removeExpense } from './../actions/expenses';
 
 const ExpenseListItem = ({id, description, amount, createdAt, dispatch}) => {
   return <div>

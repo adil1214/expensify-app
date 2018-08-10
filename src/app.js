@@ -21,7 +21,7 @@ store1.subscribe(() => {
 store1.dispatch(addExpense({description: 'water bill', amount: 500, createdAt: 3500}));
 store1.dispatch(addExpense({description: 'gas bill', amount: 700, createdAt: 900000}));
 store1.dispatch(addExpense({description: 'electricity bill', amount: 900}));
-store1.dispatch(addExpense({description: '4th week\'s food', amount: 350}));
+store1.dispatch(addExpense({description: '4th week\'s food', amount: 350, createdAt: 1000}));
 
 store1.dispatch(setTextFilter('bill'));
 
