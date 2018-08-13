@@ -1,7 +1,6 @@
 import React from 'react';
 import ExpenseForm from './ExpenseForm';
 import { connect } from 'react-redux';
-// import { Redirect } from 'react-router'
 import { addExpense, editExpense, removeExpense } from './../actions/expenses';
 
 const AddExpensePage = (props) => (
@@ -10,7 +9,6 @@ const AddExpensePage = (props) => (
         <ExpenseForm
             onSubmit={(expense) => {
                 props.dispatch(addExpense(expense));
-                {/* <Redirect to='/' /> */}
                 props.history.push('/');
             }}
         />
