@@ -9,7 +9,6 @@ const AddExpensePage = (props) => (
         This is from my <strong>add expense</strong> component.
         <ExpenseForm
             onSubmit={(expense) => {
-                console.log(expense);
                 props.dispatch(addExpense(expense));
                 {/* <Redirect to='/' /> */}
                 props.history.push('/');

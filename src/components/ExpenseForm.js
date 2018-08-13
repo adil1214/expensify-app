@@ -5,14 +5,18 @@ import { SingleDatePicker } from 'react-dates';
 import 'react-dates/lib/css/_datepicker.css';
 
 export default class ExpenseForm extends Component {
-  state = {
-    description: '',
-    note: '',
-    amount: '',
-    createdAt: moment(),
-    calendarFocused: false,
-    error: ''
-  };
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      description: props.expenseToEdit ? props.expenseToEdit.description : '',
+      note: props.expenseToEdit ? props.expenseToEdit.note : '',
+      amount: props.expenseToEdit ? (props.expenseToEdit.amount / 100).toString() : '',
+      createdAt: props.expenseToEdit ? moment(props.expenseToEdit.createdAt) : moment(),
+      calendarFocused: false,
+      error: ''
+    };
+  }
 
   onDescriptionChange = (e) => {
     // you cant use the variable straight in the callback, you need to pull it first.
