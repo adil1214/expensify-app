@@ -10,7 +10,8 @@ export default class ExpenseForm extends Component {
     note: '',
     amount: '',
     createdAt: moment(),
-    focused: false
+    calendarFocused: false,
+    error: ''
   };
 
   onDescriptionChange = (e) => {
@@ -32,19 +33,39 @@ export default class ExpenseForm extends Component {
 
   onAmountChange = (e) => {
     const amount = e.target.value;
-    if (amount.match(/^\d*(\.\d{0,2})?$/)) {
+    if (!amount || amount.match(/^\d{1,}(\.\d{0,2})?$/)) {
       this.setState(() => ({ amount }))
     }
   }
 
-  onDateChange = (createdAt) => this.setState({ createdAt });
+  onDateChange = (createdAt) => {
+    if (createdAt) {
+      this.setState({ createdAt });
+    }
+  };
 
-  onFocusChange = ({ focused }) => this.setState({ focused });
+  onFocusChange = ({ focused }) => this.setState({ calendarFocused: focused });
+
+  onSubmit = (e) => {
+    e.preventDefault();
+    if (!this.state.description || !this.state.amount) {
+      this.setState(() => ({ error: 'Description and Amount fields are required!' }));
+    } else {
+      this.setState(() => ({ error: '' }));
+      this.props.onSubmit({
+        description: this.state.description,
+        amount: parseFloat(this.state.amount) * 100,
+        createdAt: this.state.createdAt.valueOf(),
+        note: this.state.note
+      });
+    }
+  };
 
   render() {
     return (
       <div>
-        <form action="">
+        {this.state.error && <p className="red-alert" >{this.state.error}</p>}
+        <form onSubmit={this.onSubmit}>
           <input
             type="text"
             placeholder="description"
@@ -63,10 +84,10 @@ export default class ExpenseForm extends Component {
           <SingleDatePicker
             date={this.state.createdAt}
             onDateChange={this.onDateChange}
-            focused={this.state.focused}
+            focused={this.state.calendarFocused}
             onFocusChange={this.onFocusChange}
             numberOfMonths={1}
-            isOutsideRange={(day) => false }
+            isOutsideRange={(day) => false}
           />
 
           <textarea

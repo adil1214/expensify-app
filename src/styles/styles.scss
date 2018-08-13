@@ -1,2 +1,10 @@
 @import './base/settings';
 @import './base/base';
+
+
+// TODO: export this later to its own file
+.red-alert {
+  color: red;
+  font-size: $m-size;
+  font-weight: bold;
+}
