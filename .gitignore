@@ -57,5 +57,11 @@ typings/
 # dotenv environment variables file
 .env
 
-#vs/vscode settings
+# vs/vscode settings
 .vs
+
+# webpack generated files
+public/bundle.js
+public/bundle.js.map
+public/styles.css
+public/styles.css.map
