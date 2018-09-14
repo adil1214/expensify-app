@@ -2,7 +2,7 @@ const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = (env) => {
-  const isProd = env === 'production';
+  const isProduction = env === 'production';
   const CSSExtract = new ExtractTextPlugin('styles.css');
 
   return {
@@ -39,13 +39,10 @@ module.exports = (env) => {
     plugins: [
       CSSExtract
     ],
-    devtool: isProd ? 'source-map' : 'inline-source-map',
+    devtool: isProduction ? 'source-map' : 'inline-source-map',
     devServer: {
       contentBase: path.join(__dirname, 'public'),
-      port: 1234,
-      open: true,
-      openPage: '',
       historyApiFallback: true
     }
   };
-}
+};
