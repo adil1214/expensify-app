@@ -3,13 +3,10 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import AppRouter from './routers/AppRouter';
 import configureStore from './store/configureStore';
-// import moment from 'moment';
-// import { addExpense, editExpense, removeExpense } from './actions/expenses';
-// import { setTextFilter, setStartDate, setEndDate, sortByAmount, sortByDate } from './actions/filters';
-// import getVisibleExpenses from './selectors/expenses';
 import 'normalize.css/normalize.css';
 import './styles/styles.scss';
 import 'react-dates/lib/css/_datepicker.css';
+// import './firebase/firebase';
 
 const store1 = configureStore();
 
