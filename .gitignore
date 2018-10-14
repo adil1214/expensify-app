@@ -59,10 +59,11 @@ typings/
 
 # vs/vscode settings
 .vs
+.vscode
 
-# webpack generated files
-# public/bundle.js
-# public/bundle.js.map
-# public/styles.css
-# public/styles.css.map
+
+# webpack build files
 public/dist/
+
+# firebase config env files
+.env.*
