@@ -12,7 +12,7 @@ export const startAddExpense = (expenseData = {}) => {
 		const { description = '', note = '', amount = 0, createdAt = 0 } = expenseData;
 		const expense = { description, note, amount, createdAt };
 
-		db.ref('expenses').push(expense).then((ref) => {
+		return db.ref('expenses').push(expense).then((ref) => {
 			dispatch(
 				addExpense({
 					id: ref.key,
@@ -32,7 +32,7 @@ export const removeExpense = (id) => ({
 // startRemoveExpense thunk
 export const startRemoveExpense = ({ id } = {}) => {
 	return (dispatch) => {
-		db.ref('expenses/' + id).set(null).then(() => dispatch(removeExpense(id)));
+		return db.ref('expenses/' + id).set(null).then(() => dispatch(removeExpense(id)));
 	};
 };
 
@@ -42,6 +42,13 @@ export const editExpense = (id, updates) => ({
 	id,
 	updates
 });
+
+// startEditExpense thunk
+export const startEditExpense = (id, updates) => {
+	return (dispatch) => {
+		return db.ref('expenses/' + id).update(updates).then(() => dispatch(editExpense(id, updates)));
+	};
+};
 
 // SET_EXPENSES
 export const setExpenses = (expenses) => ({
