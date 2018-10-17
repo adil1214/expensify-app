@@ -11,31 +11,6 @@ const config = {
 
 firebase.initializeApp(config);
 const database = firebase.database();
+const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
 
-export { firebase, database as default };
-
-// const expensesReference = database.ref('expenses');
-
-// let expenses = [
-// 	{
-// 		note: 'january rent',
-// 		amount: 1
-// 	}, 	{
-// 		note: 'febuary rent',
-// 		amount: 2
-// 	}, 	{
-// 		note: 'march rent',
-// 		amount: 3
-// 	}, 	{
-// 		note: 'april rent',
-// 		amount: 4
-// 	}
-// ];
-
-// // expenses.forEach(e => {
-// // 	expensesReference.push(e);
-// // });
-
-// database.ref('expenses').once('value', (data) => {
-// 	console.log('new value pushed', data.val());
-// });
+export { firebase, googleAuthProvider, database as default };

@@ -1,4 +1,4 @@
-import db, { firebase } from '../firebase/firebase';
+import db from '../firebase/firebase';
 
 // ADD_EXPENSE
 export const addExpense = (expense) => ({
