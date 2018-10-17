@@ -8,11 +8,12 @@ export const addExpense = (expense) => ({
 
 // startAddExpenses thunk
 export const startAddExpense = (expenseData = {}) => {
-	return (dispatch) => {
+	return (dispatch, getState) => {
 		const { description = '', note = '', amount = 0, createdAt = 0 } = expenseData;
 		const expense = { description, note, amount, createdAt };
+		const uid = getState().auth.uid;
 
-		return db.ref('expenses').push(expense).then((ref) => {
+		return db.ref(`users/${uid}/expenses`).push(expense).then((ref) => {
 			dispatch(
 				addExpense({
 					id: ref.key,
@@ -31,8 +32,9 @@ export const removeExpense = (id) => ({
 
 // startRemoveExpense thunk
 export const startRemoveExpense = ({ id } = {}) => {
-	return (dispatch) => {
-		return db.ref('expenses/' + id).set(null).then(() => dispatch(removeExpense(id)));
+	return (dispatch, getState) => {
+		const uid = getState().auth.uid;
+		return db.ref(`users/${uid}/expenses/${id}`).set(null).then(() => dispatch(removeExpense(id)));
 	};
 };
 
@@ -45,8 +47,9 @@ export const editExpense = (id, updates) => ({
 
 // startEditExpense thunk
 export const startEditExpense = (id, updates) => {
-	return (dispatch) => {
-		return db.ref('expenses/' + id).update(updates).then(() => dispatch(editExpense(id, updates)));
+	return (dispatch, getState) => {
+		const uid = getState().auth.uid;
+		return db.ref(`users/${uid}/expenses/${id}`).update(updates).then(() => dispatch(editExpense(id, updates)));
 	};
 };
 
@@ -58,8 +61,9 @@ export const setExpenses = (expenses) => ({
 
 // startSetExpenses thunk
 export const startSetExpenses = () => {
-	return (dispatch) => {
-		return db.ref('expenses').once('value').then((snapshot) => {
+	return (dispatch, getState) => {
+		const uid = getState().auth.uid;
+		return db.ref(`users/${uid}/expenses/`).once('value').then((snapshot) => {
 			const expenses = [];
 
 			snapshot.forEach((childSnapshot) => {
