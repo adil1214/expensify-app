@@ -13,8 +13,8 @@
     "heroku-postbuild": "yarn run build:prod"
   },
   "engines": {
-    "node": "8.9.3",
-    "npm": "5.7.1",
+    "node": "10.13.0",
+    "npm": "6.4.1",
     "yarn": "1.9.4"
   },
   "dependencies": {
@@ -31,7 +31,7 @@
     "firebase": "4.2.0",
     "history": "^4.7.2",
     "moment": "2.22.2",
-    "node-sass": "4.5.3",
+    "node-sass": "^4.10.0",
     "normalize.css": "7.0.0",
     "numeral": "^2.0.6",
     "react": "15.6.1",
