@@ -3,21 +3,31 @@ import { connect } from 'react-redux';
 import ExpenseListItem from './ExpenseListItem';
 import getVisibleExpenses from './../selectors/expenses';
 
-
 const ExpenseList = (props) => (
-  <div>
-    <h1>Expense List</h1>
-    {props.expenses.map((a, b) => {
-      return <ExpenseListItem {...a} key={b} /> 
-    })}
-  </div>
+	<div className="content-container">
+		<div className="list-header">
+			<div className="show-for-mobile">Expenses</div>
+			<div className="show-for-desktop">Expense</div>
+			<div className="show-for-desktop">Amount</div>
+		</div>
+		<div className="list-body">
+			{props.expenses.length === 0 ? (
+				<div className="list-item list-item--message">
+					<span>No expenses</span>
+				</div>
+			) : (
+				props.expenses.map((expense) => {
+					return <ExpenseListItem {...expense} key={expense.id} />;
+				})
+			)}
+		</div>
+	</div>
 );
 
 const mapStateToProps = (state) => {
-  return {
-    expenses: getVisibleExpenses(state.expenses, state.filters)
-  };
+	return {
+		expenses: getVisibleExpenses(state.expenses, state.filters)
+	};
 };
 
-// the call to connect returns the higher order component (a function)
 export default connect(mapStateToProps)(ExpenseList);
