@@ -9,6 +9,7 @@ import { login, logout } from './actions/auth';
 import 'normalize.css/normalize.css';
 import './styles/styles.scss';
 import 'react-dates/lib/css/_datepicker.css';
+import LoadingPage from './components/LoadingPage';
 
 const store1 = configureStore();
 
@@ -19,7 +20,7 @@ const jsx = (
 );
 
 let appRoot = document.getElementById('app');
-ReactDOM.render(<p>Loading...</p>, appRoot);
+ReactDOM.render(<LoadingPage />, appRoot);
 
 let hasRendered = false;
 const renderApp = () => {
