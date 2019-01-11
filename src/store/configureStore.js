@@ -1,6 +1,5 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
-import logger from 'redux-logger';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import expensesReducer from './../reducers/expenses';
 import filtersReducer from './../reducers/filters';
@@ -13,7 +12,7 @@ export default () => {
 			filters: filtersReducer,
 			auth: authReducer
 		}),
-		composeWithDevTools(applyMiddleware(thunk, logger))
+		composeWithDevTools(applyMiddleware(thunk))
 	);
 
 	return store;
