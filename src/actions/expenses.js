@@ -31,10 +31,15 @@ export const removeExpense = (id) => ({
 });
 
 // startRemoveExpense thunk
-export const startRemoveExpense = ({ id } = {}) => {
+export const startRemoveExpense = (id, history) => {
 	return (dispatch, getState) => {
-		const uid = getState().auth.uid;
-		return db.ref(`users/${uid}/expenses/${id}`).set(null).then(() => dispatch(removeExpense(id)));
+		if (window.confirm('Are you sure you want to remove this expense !')) {
+			const uid = getState().auth.uid;
+			return db.ref(`users/${uid}/expenses/${id}`).set(null).then(() => {
+				dispatch(removeExpense(id));
+				history.push('/');
+			});
+		}
 	};
 };
 

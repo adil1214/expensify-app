@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import ExpenseForm from './ExpenseForm'
+import { withRouter } from 'react-router-dom';
+import ExpenseForm from './ExpenseForm';
 import { startEditExpense, startRemoveExpense } from './../actions/expenses';
 
 const EditExpensePage = (props) => {
@@ -22,9 +23,10 @@ const EditExpensePage = (props) => {
 				<button
 					className="button button__secondary"
 					onClick={(e) => {
-					props.dispatch(startRemoveExpense({id: props.expense.id}));
-					props.history.push('/');
-				}}>
+						props.dispatch(startRemoveExpense(props.expense.id, props.history));
+						{/* props.history.push('/'); */}
+					}}
+				>
 					Remove Expense
 				</button>
 			</div>
@@ -38,4 +40,4 @@ const mapStateToProps = (state, props) => {
 	};
 };
 
-export default connect(mapStateToProps)(EditExpensePage);
+export default connect(mapStateToProps)(withRouter(EditExpensePage));
