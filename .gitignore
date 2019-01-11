@@ -67,3 +67,6 @@ public/dist/
 
 # firebase config env files
 .env.*
+
+# playground folder
+src/playground/
