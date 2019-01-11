@@ -1,6 +1,16 @@
-.box-layout {
+.no-webp .box-layout {
   align-items: center;
   background: url('/images/bg.jpg');
+  background-size: cover;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  width: 100vw;
+}
+
+.webp .box-layout {
+  align-items: center;
+  background: url('/images/bg.webp');
   background-size: cover;
   display: flex;
   height: 100vh;
