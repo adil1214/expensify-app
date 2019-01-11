@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import AppRouter, { history } from './routers/AppRouter';
 import configureStore from './store/configureStore';
 import { startSetExpenses } from './actions/expenses';
-import { googleAuthProvider, firebase } from './firebase/firebase';
+import { firebase } from './firebase/firebase';
 import { login, logout } from './actions/auth';
 import 'normalize.css/normalize.css';
 import './styles/styles.scss';
@@ -32,7 +32,7 @@ const renderApp = () => {
 
 firebase.auth().onAuthStateChanged((user) => {
 	if (user) {
-		console.log('logged in');
+		console.log('logged in\n');
 		store1.dispatch(login(user.uid));
 		store1.dispatch(startSetExpenses()).then(() => {
 			renderApp();
