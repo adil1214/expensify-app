@@ -1,9 +1,12 @@
 import React from 'react';
+import { PacmanLoader } from 'react-spinners';
 
 const LoadingPage = () => (
-  <div className="loader">
-    <img className="loader__image" src="/images/loader.gif" alt="Loading..."/>
-  </div>
+	<div className="loader">
+    <PacmanLoader  
+      color={'#1b5e20'}
+    />
+	</div>
 );
 
 export default LoadingPage;
