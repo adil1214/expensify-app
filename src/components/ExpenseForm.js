@@ -67,7 +67,7 @@ export default class ExpenseForm extends Component {
           type="text"
           className="text-input"
           placeholder="Description"
-          autoFocus="true"
+          autoFocus={true}
           value={this.state.description}
           onChange={this.onDescriptionChange}
         />
