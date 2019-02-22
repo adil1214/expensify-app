@@ -2,9 +2,10 @@ import React from 'react';
 import ExpenseForm from './ExpenseForm';
 import { connect } from 'react-redux';
 import { startAddExpense } from './../actions/expenses';
+import Animate from './Animate';
 
 const AddExpensePage = (props) => (
-	<div>
+	<Animate>
 		<div className="page-header">
 			<div className="content-container">
 				<h1 className="page-header__title">Add Expense</h1>
@@ -18,11 +19,14 @@ const AddExpensePage = (props) => (
 				}}
 			/>
 		</div>
-	</div>
+	</Animate>
 );
 
 const mapDispatchToProps = (dispatch) => ({
 	startAddExpense: (expense) => dispatch(startAddExpense(expense))
 });
 
-export default connect(undefined, mapDispatchToProps)(AddExpensePage);
+export default connect(
+	undefined,
+	mapDispatchToProps
+)(AddExpensePage);

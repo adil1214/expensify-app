@@ -3,10 +3,11 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import ExpenseForm from './ExpenseForm';
 import { startEditExpense, startRemoveExpense } from './../actions/expenses';
+import Animate from './Animate';
 
 const EditExpensePage = (props) => {
 	return (
-		<div>
+		<Animate>
 			<div className="page-header">
 				<div className="content-container">
 					<h1 className="page-header__title">Edit Expense</h1>
@@ -16,7 +17,9 @@ const EditExpensePage = (props) => {
 				<ExpenseForm
 					expenseToEdit={props.expense}
 					onSubmit={(submittedExpense) => {
-						props.dispatch(startEditExpense(props.expense.id, submittedExpense));
+						props.dispatch(
+							startEditExpense(props.expense.id, submittedExpense)
+						);
 						props.history.push('/');
 					}}
 				/>
@@ -24,19 +27,23 @@ const EditExpensePage = (props) => {
 					className="button button__secondary"
 					onClick={(e) => {
 						props.dispatch(startRemoveExpense(props.expense.id, props.history));
-						{/* props.history.push('/'); */}
+						{
+							/* props.history.push('/'); */
+						}
 					}}
 				>
 					Remove Expense
 				</button>
 			</div>
-		</div>
+		</Animate>
 	);
 };
 
 const mapStateToProps = (state, props) => {
 	return {
-		expense: state.expenses.find((element) => element.id === props.match.params.id)
+		expense: state.expenses.find(
+			(element) => element.id === props.match.params.id
+		)
 	};
 };
 

@@ -14,8 +14,8 @@
   },
   "engines": {
     "node": "10.13.0",
-    "npm": "6.4.1",
-    "yarn": "1.9.4"
+    "npm": "6.7.0",
+    "yarn": "1.13.0"
   },
   "dependencies": {
     "babel-cli": "6.24.1",
@@ -38,11 +38,13 @@
     "numeral": "^2.0.6",
     "react": "15.6.1",
     "react-addons-shallow-compare": "15.6.0",
+    "react-anime": "2.0.1",
     "react-dates": "^18.1.0",
     "react-dom": "15.6.1",
     "react-modal": "2.2.2",
     "react-redux": "5.0.5",
     "react-router-dom": "4.1.2",
+    "react-spinners": "^0.5.1",
     "redux": "3.7.2",
     "redux-devtools-extension": "^2.13.5",
     "redux-logger": "^3.0.6",
