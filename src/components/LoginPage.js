@@ -1,5 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
+import {
+	FacebookLoginButton,
+	GoogleLoginButton
+} from 'react-social-login-buttons';
 import { startLoginGoogle, startLoginFacebook } from '../actions/auth';
 
 const LoginPage = ({ startLoginGoogle, startLoginFacebook }) => {
@@ -8,12 +12,8 @@ const LoginPage = ({ startLoginGoogle, startLoginFacebook }) => {
 			<div className="box-layout__box">
 				<h1 className="box-layout__title">Expensefy</h1>
 				<p>It's time to get your expenses under control.</p>
-				<button onClick={startLoginGoogle} className="button">
-					Login with Google
-				</button>
-				<button onClick={startLoginFacebook} className="button">
-					Login with Facebook
-				</button>
+				<GoogleLoginButton onClick={startLoginGoogle} className="button" />
+				<FacebookLoginButton onClick={startLoginFacebook} className="button" />
 			</div>
 		</div>
 	);
@@ -24,4 +24,7 @@ const mapDispatchToProps = (dispatch) => ({
 	startLoginFacebook: () => dispatch(startLoginFacebook())
 });
 
-export default connect(undefined, mapDispatchToProps)(LoginPage);
+export default connect(
+	undefined,
+	mapDispatchToProps
+)(LoginPage);
