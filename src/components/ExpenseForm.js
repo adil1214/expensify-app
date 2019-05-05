@@ -3,6 +3,7 @@ import moment from 'moment';
 import 'react-dates/initialize';
 import { SingleDatePicker } from 'react-dates';
 import NavigationPrompt from 'react-router-navigation-prompt';
+import swal from 'sweetalert';
 
 export default class ExpenseForm extends Component {
 	constructor(props) {
