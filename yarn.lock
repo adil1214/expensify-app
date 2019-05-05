@@ -5308,6 +5308,11 @@ react-router-dom@4.3.1:
     react-router "^4.3.1"
     warning "^4.0.1"
 
+react-router-navigation-prompt@^1.8.5:
+  version "1.8.5"
+  resolved "https://registry.yarnpkg.com/react-router-navigation-prompt/-/react-router-navigation-prompt-1.8.5.tgz#d7f5871a97ea2b572ac5d5554b162d2b2576064d"
+  integrity sha512-nCMmcgv6dlvjzAAPmeyiJFOTFxysepXzXLJGkTr0cDFJsy2ztGw2V7O7N0mcYhvfvjGh7tsqYZbuqpQEeuhMHg==
+
 react-router@^4.3.1:
   version "4.3.1"
   resolved "https://registry.yarnpkg.com/react-router/-/react-router-4.3.1.tgz#aada4aef14c809cb2e686b05cee4742234506c4e"
@@ -5328,7 +5333,7 @@ react-social-login-buttons@^2.3.0:
   dependencies:
     prop-types "^15.5.10"
 
-react-spinners@^0.5.1:
+react-spinners@^0.5.4:
   version "0.5.4"
   resolved "https://registry.yarnpkg.com/react-spinners/-/react-spinners-0.5.4.tgz#58166f8bf84cbf06dd7accad4b94a5797cfea9b9"
   integrity sha512-jo7BE8prvnZNL7xNrQL16geVXH6LmaWrhvvXnmUwz2MhFO14bhlAdCLuKCwqmUJ37kGphH0C2CJRThwkjfpVzw==
