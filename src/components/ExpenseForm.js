@@ -16,13 +16,18 @@ export default class ExpenseForm extends Component {
 			createdAt: props.expenseToEdit ? moment(props.expenseToEdit.createdAt) : moment(),
 			calendarFocused: false,
 			error: '',
-			shouldConfirmNavigation: false
+			shouldConfirmNavigation: false,
+			modalTitle: 'Are You Sure?',
+			modalText: "By leaving the changes you've made will not be saved.",
+			modalIcon: 'warning',
+			modalButtons: {
+				confirm: { text: 'Leave', value: true },
+				cancel: 'Stay'
+			}
 		};
 	}
 
 	onDescriptionChange = (e) => {
-		// you cant use the variable straight in the callback, you need to pull it first.
-		// or you can use e.persist()
 		const description = e.target.value;
 		this.setState(() => ({ description, shouldConfirmNavigation: description.length > 0 }));
 	};
@@ -47,13 +52,9 @@ export default class ExpenseForm extends Component {
 
 	onFocusChange = ({ focused }) => this.setState({ calendarFocused: focused });
 
-	// FIXME: 1 i broke adding expense,
-	//        2 should be able to leave page when submitting form
 	comparePropsWithState = () => {
-		if (
-			!this.props.expenseToEdit // if its adding a new expense, we rely on "shouldConfirmNavigation"
-		)
-			return true;
+		// if its adding a new expense, we rely on "shouldConfirmNavigation"
+		if (!this.props.expenseToEdit) return true;
 		const test =
 			this.props.expenseToEdit.description != this.state.description ||
 			this.props.expenseToEdit.note != this.state.note ||
@@ -80,16 +81,26 @@ export default class ExpenseForm extends Component {
 	};
 
 	render() {
-		// console.log('add or edit ? ', this.props.expenseToEdit);
 		return (
 			<Fragment>
 				<NavigationPrompt when={this.comparePropsWithState && this.state.shouldConfirmNavigation}>
-					{({ onConfirm, onCancel }) => {
-						if (window.confirm('are you sure you wanna leave?')) {
-							onConfirm();
-						} else {
-							console.log("you're still here");
-							onCancel();
+					{({ isActive, onConfirm, onCancel }) => {
+						if (isActive) {
+							swal({
+								title: this.state.modalTitle,
+								text: this.state.modalText,
+								icon: this.state.modalIcon,
+								buttons: this.state.modalButtons,
+								dangerMode: true,
+								closeOnEsc: false,
+								closeOnClickOutside: false
+							}).then((confirmed) => {
+								if (confirmed) {
+									onConfirm();
+								} else {
+									onCancel();
+								}
+							});
 						}
 					}}
 				</NavigationPrompt>
@@ -130,7 +141,7 @@ export default class ExpenseForm extends Component {
 					/>
 
 					<div>
-						<button className="button">Add Expense</button>
+						<button className="button">{this.props.expenseToEdit ? 'Edit Expense' : 'Add Expense'}</button>
 					</div>
 				</form>
 			</Fragment>
