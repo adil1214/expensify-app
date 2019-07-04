@@ -9,7 +9,9 @@
     "dev-server": "webpack-dev-server",
     "test": "cross-env NODE_ENV=test jest",
     "start": "node server/server.js",
-    "heroku-postbuild": "yarn run build:prod"
+    "heroku-postbuild": "yarn run build:prod",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "engines": {
     "node": "10.13.0",
@@ -57,7 +59,8 @@
     "sweetalert": "^2.1.2",
     "uuid": "3.1.0",
     "validator": "9.4.1",
-    "webpack": "3.1.0"
+    "webpack": "3.1.0",
+    "snyk": "^1.189.0"
   },
   "devDependencies": {
     "cross-env": "^5.2.0",
@@ -67,5 +70,6 @@
     "jest": "20.0.4",
     "react-test-renderer": "15.6.1",
     "webpack-dev-server": "2.5.1"
-  }
+  },
+  "snyk": true
 }
