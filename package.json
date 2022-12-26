@@ -22,7 +22,7 @@
     "@fortawesome/react-fontawesome": "^0.1.4",
     "babel-cli": "6.24.1",
     "babel-core": "6.25.0",
-    "babel-loader": "7.1.1",
+    "babel-loader": "8.2.4",
     "babel-plugin-transform-class-properties": "6.24.1",
     "babel-plugin-transform-object-rest-spread": "6.23.0",
     "babel-polyfill": "6.26.0",
@@ -52,12 +52,12 @@
     "redux-devtools-extension": "^2.13.5",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
-    "sass-loader": "6.0.6",
-    "style-loader": "0.18.2",
+    "sass-loader": "9.0.0",
+    "style-loader": "1.1.4",
     "sweetalert": "^2.1.2",
     "uuid": "3.1.0",
     "validator": "9.4.1",
-    "webpack": "3.1.0"
+    "webpack": "5.0.0"
   },
   "devDependencies": {
     "cross-env": "^5.2.0",
